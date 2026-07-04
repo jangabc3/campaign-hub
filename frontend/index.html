@@ -1,0 +1,210 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Campick</title>
+    <link rel="stylesheet" href="./src/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="./index.html" aria-label="Campick 홈">
+          <span>Camp</span><strong>ick</strong>
+        </a>
+
+        <nav class="main-nav" aria-label="주요 메뉴">
+          <a href="#campaign-list-title">체험단</a>
+          <a href="#">체험단 지도</a>
+          <a href="#">누락확인</a>
+          <a href="#">저품질 진단</a>
+          <a href="#">이용 가이드</a>
+          <a href="#">플랫폼 소개</a>
+          <a href="#">자주 묻는 질문</a>
+        </nav>
+
+        <div class="header-actions">
+          <button type="button" class="icon-button" aria-label="검색">⌕</button>
+          <button type="button" class="text-button">로그인</button>
+          <button type="button" class="primary-button primary-button--small">회원가입</button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero-section">
+        <div class="page-shell hero-grid">
+          <div class="hero-copy">
+            <h1>내게 맞는 체험단을<br />한곳에서 찾아보세요</h1>
+            <p>블로그, 인스타그램, 유튜브 체험단 정보를 한눈에 확인하고 간편하게 신청하세요.</p>
+
+            <form class="hero-search" aria-label="체험단 통합 검색">
+              <span class="search-icon" aria-hidden="true">⌕</span>
+              <input
+                type="search"
+                placeholder="지역·업종으로 검색 (예: 강남 맛집, 뷰티, 인스타그램)"
+                autocomplete="off"
+              />
+              <button type="button" class="primary-button">검색</button>
+            </form>
+
+            <div class="keyword-chips" aria-label="추천 키워드">
+              <button type="button"># 강남맛집</button>
+              <button type="button"># 뷰티</button>
+              <button type="button"># 인스타그램</button>
+              <button type="button"># 원데이클래스</button>
+              <button type="button"># 카페</button>
+              <button type="button"># 운동</button>
+              <button type="button"># 여행</button>
+            </div>
+
+            <div class="stat-cards" aria-label="체험단 통계">
+              <div>
+                <span>전체 체험단</span>
+                <strong>23,615</strong>
+              </div>
+              <div>
+                <span>오늘 마감</span>
+                <strong>342</strong>
+              </div>
+              <div>
+                <span>신청 가능</span>
+                <strong>8,742</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-visual" aria-hidden="true">
+            <div class="gift-box"></div>
+            <div class="floating-card floating-card--top"></div>
+            <div class="floating-card floating-card--bottom"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="page-shell filter-panel" aria-label="필터 그룹">
+        <div class="filter-panel__header">
+          <strong>필터 그룹</strong>
+          <button type="button" class="reset-button">초기화</button>
+        </div>
+
+        <div class="filter-layout">
+          <div class="filter-column">
+            <span>지역</span>
+            <div class="chip-group">
+              <button type="button" class="chip is-active">전체</button>
+              <button type="button" class="chip">서울</button>
+              <button type="button" class="chip">경기</button>
+              <button type="button" class="chip">부산</button>
+              <button type="button" class="chip">세종</button>
+              <button type="button" class="chip">강원</button>
+              <button type="button" class="chip">충남</button>
+              <button type="button" class="chip">전북</button>
+              <button type="button" class="chip">전남</button>
+              <button type="button" class="chip">경북</button>
+              <button type="button" class="chip">경남</button>
+              <button type="button" class="chip">제주</button>
+            </div>
+          </div>
+
+          <div class="filter-column">
+            <span>카테고리</span>
+            <div class="chip-group">
+              <button type="button" class="chip is-active">전체</button>
+              <button type="button" class="chip">맛집</button>
+              <button type="button" class="chip">뷰티</button>
+              <button type="button" class="chip">생활</button>
+              <button type="button" class="chip">여행</button>
+              <button type="button" class="chip">문화</button>
+              <button type="button" class="chip">운동</button>
+              <button type="button" class="chip">레저</button>
+              <button type="button" class="chip">제품</button>
+              <button type="button" class="chip">기타</button>
+            </div>
+          </div>
+
+          <div class="filter-column">
+            <span>플랫폼</span>
+            <div class="chip-group">
+              <button type="button" class="chip is-active">전체</button>
+              <button type="button" class="chip">블로그</button>
+              <button type="button" class="chip">인스타그램</button>
+              <button type="button" class="chip">유튜브</button>
+              <button type="button" class="chip">클립</button>
+              <button type="button" class="chip">틱톡</button>
+            </div>
+          </div>
+
+          <div class="filter-column">
+            <span>제공 내역</span>
+            <div class="chip-group">
+              <button type="button" class="chip is-active">전체</button>
+              <button type="button" class="chip">제품 제공</button>
+              <button type="button" class="chip">식사권</button>
+              <button type="button" class="chip">이용권</button>
+              <button type="button" class="chip">현금/포인트</button>
+              <button type="button" class="chip">기타</button>
+            </div>
+          </div>
+
+          <div class="filter-actions">
+            <label class="toggle-row">
+              <span>인원부족 체험단 제외</span>
+              <input type="checkbox" />
+              <i aria-hidden="true"></i>
+            </label>
+            <button type="button" class="primary-button">필터 적용</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="page-shell content-grid">
+        <div class="campaign-section">
+          <div class="campaign-toolbar">
+            <div>
+              <h2 id="campaign-list-title">전체 체험단 목록</h2>
+              <p>총 23,615개의 체험단이 있습니다.</p>
+            </div>
+
+            <div class="list-controls">
+              <div class="sort-tabs" aria-label="정렬">
+                <button type="button" class="is-active">최신순</button>
+                <button type="button">마감임박순</button>
+                <button type="button">경쟁률 낮은순</button>
+                <button type="button">참여 많은순</button>
+              </div>
+              <div class="view-tabs" aria-label="보기 전환">
+                <button type="button" class="is-active">카드형</button>
+                <button type="button">리스트형</button>
+              </div>
+            </div>
+          </div>
+
+          <div id="campaign-list" class="campaign-grid" aria-live="polite"></div>
+        </div>
+
+        <aside class="right-sidebar" aria-label="추천과 빠른 메뉴">
+          <section class="sidebar-card">
+            <div class="sidebar-heading">
+              <h2>오늘의 추천</h2>
+              <a href="#campaign-list-title">더보기</a>
+            </div>
+            <div id="recommendation-list" class="recommendation-list"></div>
+          </section>
+
+          <section class="sidebar-card">
+            <h2>빠른 메뉴</h2>
+            <div class="quick-menu">
+              <button type="button">♡<span>찜한 체험단</span></button>
+              <button type="button">▤<span>신청 내역</span></button>
+              <button type="button">🏆<span>당첨 발표</span></button>
+              <button type="button">☏<span>1:1 문의</span></button>
+            </div>
+          </section>
+        </aside>
+      </section>
+    </main>
+
+    <script type="module" src="./src/app.js"></script>
+  </body>
+</html>
