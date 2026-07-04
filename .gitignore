@@ -1,0 +1,22 @@
+.gradle/
+build/
+out/
+target/
+bin/
+
+*.class
+*.log
+
+.idea/
+*.iml
+.vscode/
+
+### OS ###
+.DS_Store
+Thumbs.db
+
+### Environment ###
+.env
+.env.*
+!*.example
+
