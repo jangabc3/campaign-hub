@@ -1,9 +1,18 @@
 export function createCampaignCard(campaign) {
   const tags = campaign.tags.map((tag) => `<span>${tag}</span>`).join("");
+  const dday = campaign.dday.replace("일 남음", "");
+  const typeIcons = {
+    방문형: "🏠",
+    배송형: "📦",
+    구매형: "🛍️",
+    기타: "✨",
+  };
+  const typeIcon = typeIcons[campaign.benefit] ?? "✨";
 
   return `
     <article class="campaign-card">
-      <div class="campaign-card__image" style="background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.04), rgba(0, 0, 0, 0.18)), url('${campaign.imageUrl}')">
+      <div class="campaign-card__image">
+        <div class="campaign-card__image-media" style="background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.04), rgba(0, 0, 0, 0.18)), url('${campaign.imageUrl}')"></div>
         <span class="platform-badge">${campaign.platform}</span>
         <button type="button" class="wish-button" aria-label="${campaign.title} 찜하기">♡</button>
       </div>
@@ -16,9 +25,9 @@ export function createCampaignCard(campaign) {
         </div>
 
         <div class="campaign-card__meta">
-          <span class="type-pill">${campaign.benefit}</span>
-          <strong>${campaign.dday}</strong>
-          <span>신청 <em>${campaign.applicants}</em> / ${campaign.capacity}</span>
+          <span class="type-pill"><span class="type-pill__icon" aria-hidden="true">${typeIcon}</span>${campaign.benefit}</span>
+          <strong class="deadline-text"><em>${dday}</em><span>일 남음</span></strong>
+          <span class="apply-count">신청 <em>${campaign.applicants}</em> / ${campaign.capacity}</span>
         </div>
       </div>
     </article>
