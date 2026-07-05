@@ -1,4 +1,5 @@
 import { createCampaignCard } from "./shared/components/campaign-card.js";
+import { getCampaigns } from "./shared/api/api-client.js";
 
 const regions = {
   서울: [
@@ -219,105 +220,6 @@ const regions = {
   제주: ["전체", "제주시", "서귀포시"],
 };
 
-const campaigns = [
-  {
-    title: "감성 가득한 브런치 카페",
-    platform: "블로그",
-    dday: "8일 남음",
-    region: "서울 성동구",
-    category: "맛집",
-    benefit: "방문형",
-    applicants: 123,
-    capacity: 5,
-    tags: ["#브런치", "#감성카페", "#데이트"],
-    imageUrl: "https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=900&q=80",
-  },
-  {
-    title: "비건 스킨케어 제품 체험단",
-    platform: "인스타그램",
-    dday: "6일 남음",
-    region: "경기 성남시",
-    category: "뷰티",
-    benefit: "배송형",
-    applicants: 98,
-    capacity: 10,
-    tags: ["#스킨케어", "#비건뷰티", "#촉촉템"],
-    imageUrl: "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=900&q=80",
-  },
-  {
-    title: "제주 2박 3일 여행 체험단",
-    platform: "유튜브",
-    dday: "5일 남음",
-    region: "제주 제주시",
-    category: "여행",
-    benefit: "구매형",
-    applicants: 76,
-    capacity: 3,
-    tags: ["#제주도", "#여행", "#숙박지원"],
-    imageUrl: "https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&w=900&q=80",
-  },
-  {
-    title: "헬스장 1일 이용권 체험단",
-    platform: "틱톡",
-    dday: "3일 남음",
-    region: "서울 강남구",
-    category: "운동",
-    benefit: "기타",
-    applicants: 45,
-    capacity: 2,
-    tags: ["#헬스", "#운동", "#운동하는남자"],
-    imageUrl: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=900&q=80",
-  },
-  {
-    title: "프리미엄 한식 다이닝 리뷰어",
-    platform: "블로그",
-    dday: "7일 남음",
-    region: "서울 마포구",
-    category: "맛집",
-    benefit: "방문형",
-    applicants: 64,
-    capacity: 4,
-    tags: ["#한식", "#파인다이닝", "#커플식사"],
-    imageUrl: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=900&q=80",
-  },
-  {
-    title: "도심 호텔 숙박 리뷰 체험단",
-    platform: "인스타그램",
-    dday: "9일 남음",
-    region: "부산 해운대구",
-    category: "여행",
-    benefit: "방문형",
-    applicants: 84,
-    capacity: 6,
-    tags: ["#호캉스", "#숙박", "#오션뷰"],
-    imageUrl: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=900&q=80",
-  },
-  {
-    title: "홈 스타일링 소품 체험단",
-    platform: "유튜브",
-    dday: "4일 남음",
-    region: "경기 고양시",
-    category: "문화",
-    benefit: "배송형",
-    applicants: 59,
-    capacity: 8,
-    tags: ["#인테리어", "#홈스타일링", "#소품"],
-    imageUrl: "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=900&q=80",
-  },
-  {
-    title: "메이크업 브러시 세트 리뷰",
-    platform: "블로그",
-    dday: "2일 남음",
-    region: "인천 연수구",
-    category: "뷰티",
-    benefit: "배송형",
-    applicants: 112,
-    capacity: 12,
-    tags: ["#메이크업", "#브러시", "#뷰티템"],
-    imageUrl: "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&w=900&q=80",
-  },
-];
-
 function renderRegions() {
   const provinceList = document.querySelector("#province-list");
   const districtList = document.querySelector("#district-list");
@@ -364,14 +266,119 @@ function renderRegions() {
   renderDistricts("서울");
 }
 
-function renderCampaigns() {
+function getRemainingDays(recruitEndDate) {
+  if (!recruitEndDate) {
+    return null;
+  }
+
+  const today = new Date();
+  const endDate = new Date(`${recruitEndDate}T23:59:59`);
+  const diffTime = endDate.getTime() - today.getTime();
+  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+  return Math.max(diffDays, 0);
+}
+
+function getCampaignType(category) {
+  const deliveryCategories = ["Beauty", "뷰티", "Culture", "문화"];
+  const purchaseCategories = ["Stay", "숙박", "Travel", "여행"];
+
+  if (deliveryCategories.includes(category)) {
+    return "배송형";
+  }
+
+  if (purchaseCategories.includes(category)) {
+    return "구매형";
+  }
+
+  return "방문형";
+}
+
+function normalizePlatform(platform) {
+  const platformMap = {
+    Blog: "블로그",
+    Instagram: "인스타그램",
+    YouTube: "유튜브",
+    Youtube: "유튜브",
+    TikTok: "틱톡",
+  };
+
+  return platformMap[platform] ?? platform ?? "채널";
+}
+
+function normalizeCategory(category) {
+  const categoryMap = {
+    Restaurant: "맛집",
+    Stay: "숙박",
+    Cafe: "카페",
+    Beauty: "뷰티",
+    Culture: "문화",
+    Travel: "여행",
+  };
+
+  return categoryMap[category] ?? category ?? "기타";
+}
+
+function toCampaignCardData(campaign) {
+  const category = normalizeCategory(campaign.category);
+  const remainingDays = getRemainingDays(campaign.recruitEndDate);
+  const tags = [campaign.companyName, campaign.region, category]
+    .filter(Boolean)
+    .map((tag) => `#${tag}`);
+
+  return {
+    title: campaign.title,
+    platform: normalizePlatform(campaign.platform),
+    dday: remainingDays === null ? null : `${remainingDays}일 남음`,
+    region: campaign.region,
+    category,
+    type: getCampaignType(campaign.category),
+    benefitText: campaign.benefit,
+    applicants: campaign.applicants,
+    capacity: campaign.recruitCount,
+    tags,
+    imageUrl: campaign.thumbnailUrl ?? "https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=900&q=80",
+  };
+}
+
+function renderCampaignMessage(message, variant = "loading") {
   const campaignList = document.querySelector("#campaign-list");
 
   if (!campaignList) {
     return;
   }
 
-  campaignList.innerHTML = campaigns.map(createCampaignCard).join("");
+  campaignList.innerHTML = `<p class="campaign-message campaign-message--${variant}">${message}</p>`;
+}
+
+async function renderCampaigns() {
+  const campaignList = document.querySelector("#campaign-list");
+
+  if (!campaignList) {
+    return;
+  }
+
+  renderCampaignMessage("체험단 목록을 불러오는 중입니다.", "loading");
+
+  try {
+    const campaigns = await getCampaigns();
+
+    if (!Array.isArray(campaigns)) {
+      throw new Error("체험단 목록 응답 형식이 올바르지 않습니다.");
+    }
+
+    if (!campaigns.length) {
+      renderCampaignMessage("표시할 체험단이 없습니다.", "empty");
+      return;
+    }
+
+    campaignList.innerHTML = campaigns
+      .map(toCampaignCardData)
+      .map(createCampaignCard)
+      .join("");
+  } catch (error) {
+    renderCampaignMessage("체험단 목록을 불러오지 못했습니다. 백엔드 서버가 실행 중인지 확인해주세요.", "error");
+  }
 }
 
 renderRegions();

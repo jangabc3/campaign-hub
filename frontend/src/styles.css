@@ -344,6 +344,26 @@ a {
   align-items: start;
 }
 
+.campaign-message {
+  grid-column: 1 / -1;
+  margin: 0;
+  padding: 34px 18px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.94);
+  color: #596174;
+  font-size: 15px;
+  font-weight: 800;
+  text-align: center;
+  box-shadow: var(--shadow-soft);
+}
+
+.campaign-message--error {
+  border-color: rgba(255, 107, 53, 0.36);
+  background: #fff7f2;
+  color: #c2410c;
+}
+
 .campaign-card {
   overflow: hidden;
   border: 1px solid var(--border);

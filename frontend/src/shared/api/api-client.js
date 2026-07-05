@@ -1,9 +1,13 @@
-﻿// 백엔드 API가 준비되면 이 파일의 함수 내부에서 fetch를 호출합니다.
-const API_BASE_URL = "http://localhost:8080/api";
+﻿const API_BASE_URL = "http://localhost:8080/api";
 
-// 1단계에서는 실제 API를 호출하지 않고, 연결 지점만 미리 만들어둡니다.
 export async function getCampaigns() {
-  return Promise.resolve([]);
+  const response = await fetch(`${API_BASE_URL}/campaigns`);
+
+  if (!response.ok) {
+    throw new Error("체험단 목록을 불러오지 못했습니다.");
+  }
+
+  return response.json();
 }
 
 export { API_BASE_URL };
