@@ -8,6 +8,7 @@ import com.campaignhub.campaign.repository.CampaignRepository;
 import jakarta.transaction.Transactional;
 import java.util.List;
 import org.springframework.data.domain.Sort;
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -62,12 +63,17 @@ public class CampaignAdminService {
 
     @Transactional
     public void delete(Long campaignId) {
-        campaignRepository.delete(findCampaign(campaignId));
+        if (!campaignRepository.existsById(campaignId)) {
+            throw new IllegalArgumentException("체험단을 찾을 수 없습니다.");
+        }
+
+        campaignRepository.deleteById(campaignId);
     }
 
+    @NonNull
     private Campaign findCampaign(Long campaignId) {
         return campaignRepository.findById(campaignId)
-                .orElseThrow(() -> new IllegalArgumentException("체험단을 찾을 수 없습니다."));
+            .orElseThrow(() -> new IllegalArgumentException("체험단을 찾을 수 없습니다."));
     }
 
     private void validateRecruitPeriod(java.time.LocalDate startDate, java.time.LocalDate endDate) {

@@ -5,7 +5,6 @@ import com.campaignhub.admin.campaign.dto.CampaignCreateRequest;
 import com.campaignhub.admin.campaign.dto.CampaignUpdateRequest;
 import com.campaignhub.admin.campaign.service.CampaignAdminService;
 import jakarta.validation.Valid;
-import java.net.URI;
 import java.util.List;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -40,8 +39,10 @@ public class CampaignAdminController {
     @PostMapping
     public ResponseEntity<CampaignAdminResponse> create(@Valid @RequestBody CampaignCreateRequest request) {
         CampaignAdminResponse response = campaignAdminService.create(request);
+
         return ResponseEntity
-                .created(URI.create("/api/admin/campaigns/" + response.id()))
+                .status(201)
+                .header("Location", "/api/admin/campaigns/" + response.id())
                 .body(response);
     }
 
