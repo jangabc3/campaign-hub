@@ -280,8 +280,9 @@ function getRemainingDays(recruitEndDate) {
 }
 
 function getCampaignType(category) {
-  const deliveryCategories = ["Beauty", "뷰티", "Culture", "문화"];
+  const deliveryCategories = ["Beauty", "뷰티", "Culture", "문화", "스킨케어"];
   const purchaseCategories = ["Stay", "숙박", "Travel", "여행"];
+  const otherCategories = ["Fitness", "헬스", "운동", "기타"];
 
   if (deliveryCategories.includes(category)) {
     return "배송형";
@@ -289,6 +290,10 @@ function getCampaignType(category) {
 
   if (purchaseCategories.includes(category)) {
     return "구매형";
+  }
+
+  if (otherCategories.includes(category)) {
+    return "기타";
   }
 
   return "방문형";
@@ -314,6 +319,7 @@ function normalizeCategory(category) {
     Beauty: "뷰티",
     Culture: "문화",
     Travel: "여행",
+    Fitness: "헬스",
   };
 
   return categoryMap[category] ?? category ?? "기타";

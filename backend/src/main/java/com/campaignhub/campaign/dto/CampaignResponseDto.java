@@ -11,6 +11,8 @@ public record CampaignResponseDto(
         String thumbnailUrl,
         String region,
         String platform,
-        String category
+        String category,
+        int recruitCount,
+        int applicants
 ) {
 }
