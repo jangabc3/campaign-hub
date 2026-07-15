@@ -1,221 +1,264 @@
-# Campaign Hub
+# CAM PICK
 
-여러 체험단 사이트의 모집 정보를 한 곳에서 검색하고, 원하는 체험단을 빠르게 찾을 수 있는 체험단 모음 웹 서비스입니다.
+> 여러 체험단 사이트에 흩어진 모집 정보를 한 곳에서 검색하고,
+> 원하는 체험단을 쉽고 빠르게 찾을 수 있는 체험단 통합 플랫폼입니다.
 
-초기 버전은 관리자가 직접 체험단 정보를 등록하는 방식으로 시작하고, 이후 크롤링과 추천 기능으로 확장합니다.
+초기 버전은 관리자가 직접 체험단을 등록하는 방식으로 개발하며,
+향후 크롤링과 AI 기반 추천 기능을 추가하여 자동화된 체험단 플랫폼으로 확장하는 것을 목표로 합니다.
 
-## 1. 프로젝트 목표
+---
 
-- 여러 플랫폼에 흩어진 체험단 모집 정보를 한 화면에서 조회
-- 제목, 업체명, 키워드, 지역, 플랫폼, 카테고리 기반 검색 및 필터링
-- 마감일, 최신 등록일, 조회수, 인기도 기준 정렬
-- 회원별 즐겨찾기와 마이페이지 제공
-- 관리자 등록 기능을 먼저 구현하고, 이후 외부 사이트 자동 수집으로 확장
+# 📌 프로젝트 목표
 
-## 2. 주요 사용자
+- 여러 플랫폼의 체험단 모집 정보를 한 곳에서 조회
+- 제목, 업체명, 키워드 기반 검색
+- 지역, 플랫폼, 카테고리 필터
+- 최신순, 마감임박순, 조회수순, 인기순 정렬
+- 회원별 즐겨찾기 및 마이페이지 제공
+- 관리자 전용 체험단 관리 기능
+- 크롤링과 AI 추천 기능으로 확장 가능한 구조 설계
 
-| 사용자 | 주요 목적 |
-| --- | --- |
-| 비회원 | 체험단 목록 검색, 상세 정보 확인 |
-| 회원 | 체험단 찜하기, 찜 목록 관리, 맞춤 추천 |
-| 관리자 | 체험단 등록, 수정, 삭제, 회원 관리 |
+---
 
-## 3. 핵심 기능
+#  주요 사용자
 
-### 체험단 조회
+| 사용자 | 주요 기능 |
+|---------|-----------|
+| 비회원 | 체험단 목록 조회, 상세보기 |
+| 회원 | 즐겨찾기, 마이페이지, 맞춤 추천 |
+| 관리자 | 체험단 등록·수정·삭제, 회원 관리 |
 
-- 전체 체험단 목록 조회
-- 최신순 정렬
-- 마감임박순 정렬
-- 조회수순 정렬
-- 인기순 정렬
-- 체험단 상세보기
+---
 
-### 검색
+#  주요 기능
 
-- 제목 검색
-- 업체명 검색
-- 키워드 검색
-- 예시: 맛집, PT, 헬스, 호텔
+## 사용자
 
-### 필터
+- 체험단 목록 조회
+- 체험단 상세 조회
+- 검색
+- 필터
+- 정렬
+- 즐겨찾기
+- 마이페이지
 
-- 지역: 서울, 경기, 부산 등
-- 플랫폼: 블로그, 인스타그램, 유튜브 등
-- 카테고리: 맛집, 뷰티, 운동, 숙박, 여행 등
-
-### 회원
-
-- 회원가입
-- 로그인
-- 로그아웃
-- 내 정보 수정
-
-### 즐겨찾기
-
-- 체험단 찜하기
-- 찜 목록 조회
-- 찜 삭제
-
-### 관리자
+## 관리자
 
 - 체험단 등록
 - 체험단 수정
 - 체험단 삭제
 - 회원 관리
 
-### 확장 기능
+## 향후 확장 기능
 
 - 마감 하루 전 알림
-- 새 체험단 등록 알림
+- 신규 체험단 알림
 - 지도 기반 지역 검색
-- 자연어 AI 검색
-- 개인화 추천 시스템
+- AI 자연어 검색
+- AI 추천 시스템
 - 외부 체험단 사이트 크롤링
 
-## 4. Milestones
+---
 
-| 단계 | 목표 | 완료 기준 |
-| --- | --- | --- |
-| Milestone 1 | 프로젝트 기획 | README, 기능 목록, ERD 초안, UI 스케치, 폴더 구조 완성 |
-| Milestone 2 | 체험단 목록 조회 | Entity, Repository, Service, Controller, 목록 API, 목록 화면 |
-| Milestone 3 | 체험단 상세보기 | 상세 페이지, 제공 내역, 모집 기간, 모집 인원, 신청 링크 |
-| Milestone 4 | 검색 기능 | 제목, 업체명, 키워드 검색 |
-| Milestone 5 | 필터 기능 | 지역, 플랫폼, 카테고리 필터 |
-| Milestone 6 | 정렬 기능 | 최신순, 마감임박순, 조회수순, 인기순 |
-| Milestone 7 | 회원 기능 | 회원가입, 로그인, 로그아웃 |
-| Milestone 8 | 즐겨찾기 | 찜하기, 찜 목록, 찜 삭제 |
-| Milestone 9 | 마이페이지 | 내가 찜한 체험단, 내 정보 수정 |
-| Milestone 10 | 관리자 | 체험단 등록, 수정, 삭제, 회원 관리 |
-| Milestone 11 | 크롤링 | 외부 사이트 데이터 수집 배치 |
-| Milestone 12 | 배포 | Docker, AWS, 도메인, HTTPS, CI/CD |
+# 🚀 개발 진행 현황
 
-## 5. 기술 스택 초안
+| Milestone | 내용 | 상태 |
+|-----------|------|------|
+| Milestone 1 | 프로젝트 기획 | ✅ 완료 |
+| Milestone 2 | 체험단 목록 조회 | 🟡 진행 중 |
+| Milestone 3 | 체험단 상세보기 | ⬜ 예정 |
+| Milestone 4 | 검색 기능 | ⬜ 예정 |
+| Milestone 5 | 필터 기능 | ⬜ 예정 |
+| Milestone 6 | 정렬 기능 | ⬜ 예정 |
+| Milestone 7 | 회원 기능 | ⬜ 예정 |
+| Milestone 8 | 즐겨찾기 | ⬜ 예정 |
+| Milestone 9 | 마이페이지 | ⬜ 예정 |
+| Milestone 10 | 관리자 화면 | ⬜ 예정 |
+| Milestone 11 | 크롤링 | ⬜ 예정 |
+| Milestone 12 | Docker · AWS 배포 | ⬜ 예정 |
 
-### Backend
+---
+
+#  기술 스택
+
+## Backend
 
 - Java 17
 - Spring Boot
 - Spring Web
 - Spring Data JPA
-- Spring Security
 - Validation
-- QueryDSL 또는 Spring Data Specification
 
-### Database
+## Database
 
-- 개발: H2 또는 MySQL
-- 운영: MySQL 또는 PostgreSQL
+- H2 Database (개발)
+- MySQL / PostgreSQL (운영 예정)
 
-### Frontend
+## Frontend
 
-- 1차: Thymeleaf 또는 React 중 선택
-- 포트폴리오 확장: React + TypeScript 권장
+- HTML5
+- CSS3
+- JavaScript (ES6)
+- Fetch API
 
-### Infra
+## Infra
 
-- Docker
-- AWS EC2 또는 Lightsail
-- GitHub Actions
-- Nginx
-- HTTPS
+- Gradle
+- Docker (예정)
+- AWS EC2 (예정)
+- GitHub Actions (예정)
+- Nginx (예정)
 
-## 6. 문서
+---
 
-- [프로젝트 청사진](docs/blueprint.md)
-- [기능 목록](docs/features.md)
-- [ERD 초안](docs/erd.md)
-- [UI 스케치](docs/ui-sketch.md)
-- [폴더 구조 설계](docs/folder-structure.md)
-- [API 초안](docs/api.md)
-
-## 7. 현재 구축 상태
-
-Milestone 1 기획 산출물과 Spring Boot 1차 골격을 구축했습니다.
-
-- Gradle 기반 Spring Boot 프로젝트 생성
-- H2 개발 DB 설정
-- `Campaign` Entity 생성
-- 관리자 체험단 CRUD API 생성
-- 사용자 체험단 목록/상세 조회 API 생성
-- 관리자와 사용자 기능을 코로케이션 구조로 분리
-
-### 코로케이션 구조
+#  프로젝트 구조
 
 ```text
-src/main/java/com/campaignhub/
-  campaign/
-    domain/
-    repository/
-  user/
-    campaign/
-      controller/
-      service/
-      dto/
-  admin/
-    campaign/
-      controller/
-      service/
-      dto/
-  global/
-    common/
-    config/
-    error/
+campaign-hub
+│
+├── backend
+│   ├── src
+│   │   ├── admin
+│   │   ├── campaign
+│   │   ├── global
+│   │   └── user
+│   ├── build.gradle
+│   └── settings.gradle
+│
+├── frontend
+│   ├── assets
+│   │   ├── icons
+│   │   └── images
+│   ├── src
+│   │   ├── shared
+│   │   │   ├── api
+│   │   │   └── components
+│   │   ├── app.js
+│   │   └── styles.css
+│   └── index.html
+│
+├── docs
+│   ├── api.md
+│   ├── blueprint.md
+│   ├── erd.md
+│   ├── features.md
+│   ├── folder-structure.md
+│   └── ui-sketch.md
+│
+└── README.md
 ```
 
-공통 도메인과 저장소는 `campaign`에 두고, 사용자 화면/API에서 필요한 기능은 `user/campaign`, 관리자 화면/API에서 필요한 기능은 `admin/campaign`에 함께 배치합니다.
+---
 
-### 초기 API
+#  현재 구현 상태
 
-| Method | URL | 대상 | 설명 |
-| --- | --- | --- | --- |
-| GET | `/api/campaigns` | 사용자 | 모집 중 체험단 목록 조회 |
-| GET | `/api/campaigns/{campaignId}` | 사용자 | 모집 중 체험단 상세 조회 |
-| GET | `/api/admin/campaigns` | 관리자 | 전체 체험단 목록 조회 |
-| GET | `/api/admin/campaigns/{campaignId}` | 관리자 | 체험단 상세 조회 |
-| POST | `/api/admin/campaigns` | 관리자 | 체험단 등록 |
-| PUT | `/api/admin/campaigns/{campaignId}` | 관리자 | 체험단 수정 |
-| DELETE | `/api/admin/campaigns/{campaignId}` | 관리자 | 체험단 삭제 |
+## Backend
 
-목록 정렬 예시:
+- Spring Boot 프로젝트 생성
+- H2 Database 연동
+- Campaign Entity 구현
+- Repository 구현
+- 사용자 체험단 조회 API
+- 관리자 체험단 CRUD API
+- 사용자 / 관리자 패키지 분리
 
-```text
+## Frontend
+
+- 메인 페이지 UI 구성
+- 공통 스타일 구성
+- API Client 모듈 작성
+- Campaign Card 컴포넌트 작성
+
+## Documents
+
+- 프로젝트 청사진
+- 기능 명세
+- API 명세
+- ERD
+- UI 스케치
+- 폴더 구조 설계
+
+---
+
+#  API
+
+## User API
+
+| Method | URL | 설명 |
+|--------|-----|------|
+| GET | /api/campaigns | 모집 중 체험단 목록 |
+| GET | /api/campaigns/{campaignId} | 체험단 상세 |
+
+### 정렬
+
+```http
 GET /api/campaigns?sort=latest
 GET /api/campaigns?sort=deadline
 GET /api/campaigns?sort=views
 GET /api/campaigns?sort=popular
 ```
 
-## 8. 실행 방법
+---
 
-Java 17과 Gradle 또는 Gradle Wrapper가 필요합니다.
+## Admin API
+
+| Method | URL | 설명 |
+|--------|-----|------|
+| GET | /api/admin/campaigns | 전체 조회 |
+| GET | /api/admin/campaigns/{campaignId} | 상세 조회 |
+| POST | /api/admin/campaigns | 등록 |
+| PUT | /api/admin/campaigns/{campaignId} | 수정 |
+| DELETE | /api/admin/campaigns/{campaignId} | 삭제 |
+
+---
+
+# ▶ 실행 방법
+
+### Backend
 
 ```bash
-gradle bootRun
+cd backend
+./gradlew bootRun
 ```
 
-실행 후 확인:
+Windows
 
-```text
+```bash
+gradlew.bat bootRun
+```
+
+실행 후
+
+```
 http://localhost:8080/api/campaigns
 http://localhost:8080/h2-console
 ```
 
-## 9. 초기 개발 순서
+---
 
-1. Spring Boot 프로젝트 생성
-2. Campaign Entity 설계
-3. 목록 조회 API 구현
-4. 목록 화면 구현
-5. 상세보기 구현
-6. 검색, 필터, 정렬 추가
-7. 회원과 즐겨찾기 기능 추가
-8. 관리자 등록 기능 추가
-9. 크롤링과 추천 기능으로 확장
+### Frontend
 
-## 10. 프로젝트 이름 후보
+```bash
+cd frontend
+npx serve -l 3000
+```
 
-- Campaign Hub
-- Review Campaign Hub
-- 체험단 허브
-- 리뷰 체험단 모음
+또는
+
+VS Code Live Server를 이용하여 실행합니다.
+
+---
+
+#  향후 개발 계획
+
+- 체험단 상세 페이지 구현
+- 검색 기능 구현
+- 필터 및 정렬 기능 구현
+- 회원가입 및 로그인
+- 즐겨찾기
+- 마이페이지
+- 관리자 페이지 고도화
+- Spring Security + JWT 적용
+- 크롤링 시스템 구축
+- AI 추천 시스템
+- Docker 및 AWS 배포
