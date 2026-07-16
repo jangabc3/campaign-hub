@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#ffffff" />
+  <meta name="description" content="여러 플랫폼의 체험단을 한곳에서 찾는 캠픽" />
+  <title>지역별 체험단 | CAM PICK</title>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
+  <link rel="stylesheet" href="./src/campaigns.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="./index.html" aria-label="CAM PICK 홈">CAM PICK<i></i></a>
+      <nav aria-label="주요 메뉴"><a class="active" href="#campaigns">체험단 검색</a><a href="#">즐겨찾기</a><a href="#">이용가이드</a></nav>
+      <div class="header-actions"><button type="button">로그인</button><a href="#">회원가입</a></div>
+      <button class="menu-button" type="button" aria-label="메뉴 열기" aria-expanded="false"><span></span><span></span></button>
+    </div>
+  </header>
+
+  <main class="page-shell" id="campaigns">
+    <section class="discovery-search" aria-label="캠페인 통합 검색">
+      <form id="header-search">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m16 16 5 5"></path></svg>
+        <input id="header-query" type="search" placeholder="맛집, 호텔, 뷰티, 여행, 브랜드, 캠페인명을 검색해보세요" aria-label="캠페인 통합 검색" />
+        <button type="submit">검색</button>
+      </form>
+      <p>여러 체험단 플랫폼의 캠페인을 한곳에서 찾아보세요.</p>
+    </section>
+    <section class="region-section" aria-labelledby="page-title">
+      <div class="region-heading">
+        <h1 id="page-title">지역</h1>
+        <button class="region-summary" type="button" aria-expanded="true"><span id="region-summary-text">지역을 선택해 주세요.</span><b>⌃</b></button>
+      </div>
+      <div class="province-grid" id="province-grid"></div>
+      <div class="district-panel" id="district-panel" aria-live="polite" aria-hidden="true">
+        <div class="district-heading"><span id="district-title">세부 지역</span><button id="clear-district" type="button">전체 보기</button></div>
+        <div class="district-grid" id="district-grid"></div>
+      </div>
+    </section>
+
+    <section class="filter-section" aria-label="체험단 필터">
+      <div class="filter-toolbar"><button class="filter-toggle" id="mobile-filter-button" type="button" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M7 12h10M10 17h4"/></svg>필터 <span id="filter-count">0</span></button></div>
+      <div class="dropdown-row" id="filter-panel">
+        <label><span>카테고리</span><select id="category"><option value="전체">전체</option><option>맛집</option><option>뷰티</option><option>여행</option><option>숙박</option><option>운동</option><option>제품</option></select></label>
+        <label class="platform-field"><span>원본 플랫폼</span><input id="platform" list="platform-list" placeholder="플랫폼 검색" autocomplete="off" /><datalist id="platform-list"><option value="리뷰노트"><option value="강남맛집"><option value="리뷰플레이스"><option value="리뷰몬"><option value="체험뷰"><option value="모두의체험단"><option value="디너의여왕"></datalist></label>
+        <label><span>채널</span><select id="channel"><option value="전체">전체</option><option>블로그</option><option>인스타그램</option><option>유튜브</option></select></label>
+        <label><span>유형</span><select id="type"><option value="전체">전체</option><option>방문형</option><option>배송형</option><option>구매형</option></select></label>
+        <label><span>정렬</span><select id="sort"><option value="latest">최신순</option><option value="deadline">마감임박순</option><option value="popular">인기순</option></select></label>
+        <label class="keyword-field"><span>키워드</span><input id="filter-keyword" placeholder="업체명 또는 캠페인명" /></label>
+        <button class="apply-filter" id="apply-filter" type="button">필터 적용</button>
+      </div>
+      <div class="selected-filters" id="selected-filters" aria-label="선택된 필터"></div>
+    </section>
+
+    <section class="results" aria-labelledby="results-title">
+      <div class="results-heading"><h2 id="results-title">모집 중인 체험단</h2><p><strong id="result-count">0</strong>개의 체험단</p></div>
+      <div class="campaign-grid" id="campaign-grid" aria-live="polite"></div>
+      <div class="empty-state" id="empty-state" hidden><span>⌕</span><h3>조건에 맞는 체험단이 없습니다.</h3><p>지역이나 필터를 변경해 다시 찾아보세요.</p><button id="reset-filter" type="button">전체 초기화</button></div>
+    </section>
+  </main>
+
+  <div class="sheet-backdrop" id="sheet-backdrop" hidden></div>
+  <script type="module" src="./src/campaigns.js"></script>
+</body>
+</html>
+
